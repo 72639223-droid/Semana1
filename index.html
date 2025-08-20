@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía: Ingeniería del Software</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --warning: #f39c12;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            transition: transform 0.3s ease;
+            border-top: 5px solid var(--secondary);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-1 { border-top-color: var(--secondary); }
+        .card-2 { border-top-color: var(--accent); }
+        .card-3 { border-top-color: var(--success); }
+        .card-4 { border-top-color: var(--warning); }
+        
+        .card-title {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            font-size: 1.6rem;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        
+        li {
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        li:before {
+            content: "•";
+            color: var(--secondary);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, rgba(52, 152, 219, 0.2) 0%, rgba(52, 152, 219, 0) 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .process-model {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .process-title {
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .model-list {
+            counter-reset: model-counter;
+        }
+        
+        .model-list li {
+            padding: 15px;
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            padding-left: 60px;
+        }
+        
+        .model-list li:before {
+            counter-increment: model-counter;
+            content: counter(model-counter);
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--secondary);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .methodology {
+            display: flex;
+            margin-bottom: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .methodology-header {
+            flex: 0 0 200px;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .methodology-content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .standards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .standard {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--warning);
+        }
+        
+        .challenges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .challenge {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+        }
+        
+        .challenge i {
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: var(--dark);
+            color: white;
+            margin-top: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .methodology {
+                flex-direction: column;
+            }
+            
+            .methodology-header {
+                flex: 0 0 auto;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Ingeniería del Software</h1>
+            <p class="subtitle">Un panorama completo sobre desarrollo de software</p>
+        </header>
+        
+        <div class="info-grid">
+            <div class="card card-1">
+                <h2 class="card-title"><i class="fas fa-code"></i> ¿Qué es el Software?</h2>
+                <ul>
+                    <li><span class="highlight">Según la RAE:</span> Conjunto de programas, instrucciones y reglas informáticas para ejecutar tareas en una computadora.</li>
+                    <li><span class="highlight">Según IEEE 729:</span> Conjunto de programas, procedimientos, reglas, documentación y datos asociados que forman parte de las operaciones de un sistema de computación.</li>
+                </ul>
+            </div>
+            
+            <div class="card card-2">
+                <h2 class="card-title"><i class="fas fa-cogs"></i> ¿Qué es la Ingeniería del Software?</h2>
+                <ul>
+                    <li><span class="highlight">Definición (B. Bohem):</span> La aplicación práctica del conocimiento científico en el diseño y construcción de programas de computadora y la documentación asociada.</li>
+                    <li><span class="highlight">Propósito:</span> Sistematizar el proceso creativo de desarrollo de software para acotar el riesgo de fracaso, mediante técnicas probadas.</li>
+                </ul>
+            </div>
+            
+            <div class="card card-3">
+                <h2 class="card-title"><i class="fas fa-list-alt"></i> Características del Software</h2>
+                <ul>
+                    <li><span class="highlight">Intangibilidad:</span> Producto intangible y a menudo complejo.</li>
+                    <li><span class="highlight">Complejidad:</span> Intrínsecamente complejo, haciendo inviable probarlo completamente.</li>
+                    <li><span class="highlight">Fiabilidad:</span> Atributo clave del software.</li>
+                    <li><span class="highlight">Ámbito Amplio:</span> Aborda problemas diversos desde diseño web hasta software de control en tiempo real.</li>
+                </ul>
+            </div>
+            
+            <div class="card card-4">
+                <h2 class="card-title"><i class="fas fa-columns"></i> Pilares de la Ingeniería del Software</h2>
+                <ul>
+                    <li><span class="highlight">Enfoque de Calidad:</span> Indispensable para cualquier disciplina de ingeniería.</li>
+                    <li><span class="highlight">Procesos:</span> Definen un marco de trabajo para el control de la gestión de proyectos.</li>
+                    <li><span class="highlight">Métodos:</span> Especifican cómo construir técnicamente el software.</li>
+                    <li><span class="highlight">Herramientas:</span> Proporcionan soporte a los procesos y métodos.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="padding: 0 30px;">
+            <h2 style="margin: 30px 0 20px; color: var(--primary); text-align: center;">
+                <i class="fas fa-project-diagram"></i> Modelos de Proceso (Ciclos de Vida del Software)
+            </h2>
+            
+            <div class="two-columns">
+                <div>
+                    <div class="process-model">
+                        <h3 class="process-title">Modelo Lineal Secuencial (Cascada)</h3>
+                        <ul class="model-list">
+                            <li>Enfoque sistemático y secuencial. Las fases se suceden una detrás de otra.</li>
+                            <li>Fases: Requisitos del sistema, requisitos del software, análisis, diseño, codificación, pruebas, operaciones.</li>
+                            <li>Uso frecuente en proyectos grandes con requisitos bien conocidos.</li>
+                            <li>Desventajas: Necesidad de conocer requisitos exactos desde el inicio.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="process-model">
+                        <h3 class="process-title">Modelo Basado en Prototipos</h3>
+                        <ul class="model-list">
+                            <li>Facilita la definición de requisitos mediante un diseño rápido de los aspectos visibles para el usuario.</li>
+                            <li>El prototipo se refina hasta la definición completa del sistema.</li>
+                            <li>Desventaja: El prototipo puede dar la percepción de "producto terminado".</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="process-model">
+                        <h3 class="process-title">Modelos Evolutivos</h3>
+                        <ul class="model-list">
+                            <li>Responden a la necesidad de rápida evolución del software y cambios frecuentes en los requisitos.</li>
+                            <li><span class="highlight">Modelo en Espiral:</span> Combina la naturaleza iterativa de los prototipos con aspectos sistemáticos. Incorpora análisis de riesgos.</li>
+                            <li><span class="highlight">Modelo Incremental:</span> Entrega incrementos operativos del sistema. Cada iteración produce un incremento de funcionalidad.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="process-model">
+                        <h3 class="process-title">Modelo Basado en Componentes</h3>
+                        <ul class="model-list">
+                            <li>Es de naturaleza evolutiva.</li>
+                            <li>Enfatiza la reutilización de clases y componentes que encapsulan datos y procedimientos.</li>
+                            <li>Utiliza una "biblioteca de componentes" para reutilización.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <h2 style="margin: 40px 0 20px; color: var(--primary); text-align: center;">
+                <i class="fas fa-tasks"></i> Metodologías de Desarrollo de Software
+            </h2>
+            
+            <div class="methodology">
+                <div class="methodology-header">
+                    <i class="fas fa-book fa-3x" style="margin-bottom: 15px;"></i>
+                    <h3>Metodologías Tradicionales ("Pesadas")</h3>
+                </div>
+                <div class="methodology-content">
+                    <ul>
+                        <li>Enfocadas en el modelado y mantenimiento de modelos.</li>
+                        <li>Control riguroso del proceso, especificación detallada y roles especializados.</li>
+                        <li>Basadas en normas y estándares.</li>
+                        <li>Desventajas: Limitada participación del cliente, asumen poca variación de requisitos, rigurosa documentación.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="methodology">
+                <div class="methodology-header">
+                    <i class="fas fa-bolt fa-3x" style="margin-bottom: 15px;"></i>
+                    <h3>Metodologías Ágiles</h3>
+                </div>
+                <div class="methodology-content">
+                    <ul>
+                        <li>Surgen como respuesta a la dificultad de aplicar metodologías tradicionales.</li>
+                        <li>Condiciones ideales: Proyectos de hasta 15-20 desarrolladores, no más de 5-6 meses.</li>
+                        <li><span class="highlight">eXtreme Programming (XP):</span> Ciclo de vida de 6 fases. Promueve prácticas como entregas pequeñas y frecuentes.</li>
+                        <li><span class="highlight">Scrum:</span> Estructurada en Sprints (ciclos fijos de 1 a 4 semanas). Roles clave: Product Owner, Equipo de Desarrollo, Scrum Master.</li>
+                        <li><span class="highlight">Rational Unified Process (RUP):</span> Proceso iterativo e incremental. Dirigido por Casos de Uso.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h2 style="margin: 40px 0 20px; color: var(--primary); text-align: center;">
+                <i class="fas fa-star"></i> Estándares de Calidad del Software
+            </h2>
+            
+            <div class="standards">
+                <div class="standard">
+                    <h3><i class="fas fa-chart-line"></i> CMMI</h3>
+                    <p>Capability Maturity Model Integration. Proporciona un marco para mejorar la capacidad de los procesos en la gestión y desarrollo de software, con niveles de madurez.</p>
+                </div>
+                
+                <div class="standard">
+                    <h3><i class="fas fa-globe"></i> ISO</h3>
+                    <p>International Organization for Standardization. Desarrolla y publica estándares para calidad y seguridad. Ejemplos: ISO 9000, ISO 12207, ISO 29110.</p>
+                </div>
+                
+                <div class="standard">
+                    <h3><i class="fas fa-microchip"></i> IEEE</h3>
+                    <p>Institute of Electrical and Electronics Engineers. Establece estándares técnicos, como el IEEE 730, para asegurar que los productos tecnológicos y de software sean seguros y confiables.</p>
+                </div>
+            </div>
+            
+            <h2 style="margin: 40px 0 20px; color: var(--primary); text-align: center;">
+                <i class="fas fa-exclamation-triangle"></i> Retos Comunes en el Desarrollo de Software
+            </h2>
+            
+            <div class="challenges">
+                <div class="challenge"><i class="fas fa-sync-alt"></i> El rápido avance de la tecnología</div>
+                <div class="challenge"><i class="fas fa-exchange-alt"></i> Adaptarse a requisitos cambiantes</div>
+                <div class="challenge"><i class="fas fa-chart-line"></i> Mantenerse al día con las tendencias</div>
+                <div class="challenge"><i class="fas fa-puzzle-piece"></i> Integración de sistemas existentes</div>
+                <div class="challenge"><i class="fas fa-clipboard-check"></i> Estándares de calidad indefinidos</div>
+                <div class="challenge"><i class="fas fa-tasks"></i> Gestión adecuada de proyectos</div>
+                <div class="challenge"><i class="fas fa-shield-alt"></i> Infraestructura de seguridad robusta</div>
+                <div class="challenge"><i class="fas fa-clock"></i> Limitaciones de recursos y tiempo</div>
+                <div class="challenge"><i class="fas fa-comments"></i> Problemas de comunicación</div>
+                <div class="challenge"><i class="fas fa-users"></i> Adquisición y retención de talento</div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>Infografía: Ingeniería del Software - Resumen completo basado en el documento proporcionado</p>
+        </footer>
+    </div>
+</body>
+</html>
